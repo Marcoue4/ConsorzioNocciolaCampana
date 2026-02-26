@@ -13,16 +13,16 @@ export default function ProductGrid() {
       : products.filter((p) => p.category === active)
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 md:px-10 md:py-24">
+    <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 md:px-10 md:py-16">
       {/* ── Category filter pills ── */}
-      <div className="mb-10 flex flex-wrap gap-3 sm:mb-14">
+      <div className="mb-8 flex flex-wrap gap-2.5 sm:mb-10 sm:gap-3">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActive(cat)}
             className={`rounded-full border px-5 py-2 text-sm font-medium transition ${
               active === cat
-                ? 'border-hazel-800 bg-hazel-800 text-white shadow-sm'
+                ? 'border-[var(--brand-green)] bg-[var(--brand-green)] text-white shadow-sm'
                 : 'border-hazel-300 bg-white text-hazel-700 hover:border-hazel-500 hover:bg-cream-100'
             }`}
           >
@@ -32,7 +32,7 @@ export default function ProductGrid() {
       </div>
 
       {/* ── Product grid ── */}
-      <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-x-6 gap-y-11 sm:grid-cols-2 lg:grid-cols-4">
         {filtered.map((product) => (
           <article key={product.title} className="group">
             {/* Image */}
@@ -51,17 +51,17 @@ export default function ProductGrid() {
             </div>
 
             {/* Info */}
-            <div className="mt-4">
+            <div className="mt-4 space-y-1.5">
               <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-hazel-500">
                 {product.category}
               </p>
-              <h3 className="mt-1 font-serif text-base font-bold text-hazel-900 sm:text-lg">
+              <h3 className="font-serif text-base font-bold leading-tight text-hazel-900 sm:text-[1.35rem]">
                 {product.title}
               </h3>
-              <p className="mt-1 text-sm leading-relaxed text-hazel-600">
+              <p className="min-h-[2.75rem] text-sm leading-relaxed text-hazel-600">
                 {product.description}
               </p>
-              <p className="mt-2">
+              <p className="pt-0.5">
                 <span className="font-serif text-lg font-bold text-hazel-800">
                   {product.price}
                 </span>
