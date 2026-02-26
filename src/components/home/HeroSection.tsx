@@ -6,7 +6,7 @@ export default function HeroSection() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src="/images/Banner-Consorzio-960x535.jpg"
+          src="/images/BackgroundNocciole.jpeg"
           alt="Nocciole Campane"
           fill
           className="object-cover"

@@ -3,7 +3,7 @@ import requests
 from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 
-BASE_URL = "https://www.consorzionocciolacampana.it/"
+BASE_URL = "https://conci-nuts-delight.base44.app"
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '..', 'public', 'images')
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)

@@ -1,6 +1,10 @@
 import Image from 'next/image'
 import { products } from '@/data/prodotti'
 
+/**
+ * Legacy alternating-row product layout.
+ * Kept for reference — the active page now uses ProductGrid instead.
+ */
 export default function ProductCards() {
   return (
     <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 sm:pb-20 md:px-10 md:pb-24">
@@ -29,16 +33,6 @@ export default function ProductCards() {
               <p className="mt-5 leading-relaxed text-hazel-700">
                 {product.description}
               </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                {product.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-cream-300 bg-cream-100 px-4 py-1.5 text-xs font-medium text-hazel-700"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
         ))}
