@@ -1,17 +1,49 @@
-import Image from 'next/image'
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 
 export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement | null>(null)
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
+
+  useEffect(() => {
+    const currentSection = sectionRef.current
+    if (!currentSection) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldLoadVideo(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '200px 0px' }
+    )
+
+    observer.observe(currentSection)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   return (
-    <section className="relative overflow-hidden">
+    <section ref={sectionRef} className="relative overflow-hidden">
       <div className="absolute inset-0">
-        <Image
-          src="/images/BackgroundNocciole.jpeg"
-          alt="Nocciole Campane"
-          fill
-          className="object-cover"
-          priority
-        />
+        <video
+          className="h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          poster="/images/BackgroundNocciole.jpeg"
+        >
+          {shouldLoadVideo && (
+            <source src="/images/HazelnutVideo.mp4" type="video/mp4" />
+          )}
+        </video>
         <div className="absolute inset-0 bg-gradient-to-r from-hazel-950/90 via-hazel-900/75 to-hazel-950/50" />
       </div>
 
