@@ -6,7 +6,7 @@ export default function ShowcaseSection() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src="/images/WhatsApp-Image-2023-04-21-at-11.22.47-960x720.jpeg"
+          src="/images/jackmac34-hazelnuts-1707601_1920.jpg.jpeg"
           alt="Noccioleti campani"
           fill
           className="object-cover"
