@@ -4,7 +4,7 @@ import { partners } from '@/data/chi-siamo'
 
 export default function PartnersSection() {
   return (
-    <section className="bg-white">
+    <section id="partner" className="bg-white scroll-mt-28">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:gap-16 sm:px-6 sm:py-20 md:px-10 md:py-24 lg:grid-cols-2 lg:items-center">
         <div className="img-zoom relative h-[240px] overflow-hidden rounded-2xl shadow-2xl sm:h-[320px] md:rounded-3xl lg:h-[380px]">
           <Image

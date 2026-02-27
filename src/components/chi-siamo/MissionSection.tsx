@@ -3,7 +3,7 @@ import SectionHeader from '@/components/ui/SectionHeader'
 
 export default function MissionSection() {
   return (
-    <section className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:gap-16 sm:px-6 sm:py-20 md:px-10 md:py-24 lg:grid-cols-2 lg:items-center">
+    <section id="missione" className="mx-auto grid max-w-7xl scroll-mt-28 gap-10 px-4 py-14 sm:gap-16 sm:px-6 sm:py-20 md:px-10 md:py-24 lg:grid-cols-2 lg:items-center">
       <div className="img-zoom relative h-[260px] overflow-hidden rounded-2xl shadow-2xl sm:h-[340px] md:rounded-3xl lg:h-[420px]">
         <Image
           src="/images/IMG_2281.jpg"

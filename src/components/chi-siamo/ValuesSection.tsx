@@ -2,7 +2,7 @@ import { values } from '@/data/chi-siamo'
 
 export default function ValuesSection() {
   return (
-    <section className="py-14 sm:py-20 md:py-24">
+    <section id="valori" className="scroll-mt-28 py-14 sm:py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.25em] text-forest-600">
           I nostri valori

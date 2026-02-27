@@ -1,24 +1,31 @@
 export const pillars = [
   {
-    num: '01',
-    title: 'Dal campo alla tavola',
+    title: '100% Naturale',
     description:
-      'Una filiera corta e controllata che accompagna ogni nocciola dal raccolto al prodotto finito.',
-    href: '/prodotti',
+      'Prodotti coltivati senza pesticidi, nel rispetto della terra e delle tradizioni.',
+    icon: 'leaf',
+    href: '/chi-siamo#valori',
   },
   {
-    num: '02',
-    title: 'Rete di produttori',
+    title: 'Qualità Certificata',
     description:
-      'Oltre 50 aziende unite da pratiche condivise, standard di qualità e visione comune.',
-    href: '/chi-siamo',
+      'Ogni lotto è controllato e certificato per garantire eccellenza assoluta.',
+    icon: 'award',
+    href: '/chi-siamo#missione',
   },
   {
-    num: '03',
-    title: 'Ricerca sul campo',
+    title: 'Filiera Corta',
     description:
-      'Collaborazioni con università e centri agronomici per coltivare innovazione sostenibile.',
-    href: '/notizie',
+      'Dal produttore alla tua tavola, senza intermediari, per la massima freschezza.',
+    icon: 'truck',
+    href: '/chi-siamo#partner',
+  },
+  {
+    title: 'Passione Italiana',
+    description:
+      'Oltre 35 anni di dedizione alla frutta secca di qualità superiore.',
+    icon: 'heart',
+    href: '/chi-siamo#storia',
   },
 ]
 

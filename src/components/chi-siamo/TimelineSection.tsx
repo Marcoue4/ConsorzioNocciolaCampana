@@ -2,7 +2,7 @@ import { milestones } from '@/data/chi-siamo'
 
 export default function TimelineSection() {
   return (
-    <section className="bg-white py-14 sm:py-20 md:py-24">
+    <section id="storia" className="bg-white scroll-mt-28 py-14 sm:py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10">
         <div className="text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-forest-600">
