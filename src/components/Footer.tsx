@@ -44,7 +44,7 @@ export default function Footer() {
                 info@consorzionocciolacampana.it
               </a>
             </li>
-            <li>Campania, Italia</li>
+            <li>Via Amilcare Boccio, 8 - Nola (NA), Italia</li>
           </ul>
         </div>
       </div>

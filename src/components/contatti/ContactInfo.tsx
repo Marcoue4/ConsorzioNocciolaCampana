@@ -28,10 +28,10 @@ export default function ContactInfo() {
             Telefono
           </p>
           <a
-            href="tel:+390000000000"
+            href="tel:+393770824898"
             className="mt-2 block font-serif text-lg font-medium text-hazel-900 transition hover:text-forest-700"
           >
-            +39 000 000 0000
+            +39 377 0824898
           </a>
         </div>
 
@@ -40,10 +40,10 @@ export default function ContactInfo() {
             Sede
           </p>
           <p className="mt-2 font-serif text-lg font-medium text-hazel-900">
-            Campania, Italia
+            Via Amilcare Boccio, 8
           </p>
           <p className="mt-1 text-sm text-hazel-600">
-            Indirizzo completo da confermare
+            Nola (NA), Italia
           </p>
         </div>
       </div>

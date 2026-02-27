@@ -23,7 +23,7 @@ export const pillars = [
   {
     title: 'Passione Italiana',
     description:
-      'Oltre 35 anni di dedizione alla frutta secca di qualità superiore.',
+      'Da anni portiamo la nostra dedizione alla frutta secca di qualità superiore.',
     icon: 'heart',
     href: '/chi-siamo#storia',
   },
@@ -35,17 +35,20 @@ export const latestNews = [
     image: '/images/CONVEGNO-CONSORZIO-COMUNE-DI-NOLA-1.jpeg',
     excerpt:
       'Dialogo con le istituzioni per rafforzare la filiera corilicola campana.',
+    slug: 'convegno-consorzio-comune-di-nola',
   },
   {
     title: 'Sviluppo delle filiere della frutta in guscio',
     image: '/images/filiere-frutta-in-guscio-800x445-1.jpg',
     excerpt:
       'Nuove strategie per la valorizzazione dei prodotti del territorio.',
+    slug: 'filiere-frutta-in-guscio-economia-circolare',
   },
   {
     title: 'Nuovi prodotti a base di nocciola campana',
     image: '/images/Foto-1-Crema-Spamabile-Nocciola--960x720.jpg',
     excerpt:
       'Dalla materia prima alla trasformazione: crema spalmabile 100% campana.',
+    slug: 'crema-spalmabile-nocciola-amazon',
   },
 ]
