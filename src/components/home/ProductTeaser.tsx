@@ -13,7 +13,7 @@ export default function ProductTeaser() {
               heading="Dalla nocciola al prodotto di eccellenza."
             />
             <p className="mt-5 leading-relaxed text-hazel-700">
-              Crema spalmabile, granella, farina e nocciole tostate: ogni
+              Crema spalmabile, granella, noci e olio di nocciola: ogni
               trasformazione nasce dal rispetto della materia prima e della
               tradizione.
             </p>
@@ -35,8 +35,8 @@ export default function ProductTeaser() {
             </div>
             <div className="img-zoom relative mt-8 h-44 overflow-hidden rounded-2xl shadow-lg sm:mt-12 sm:h-64">
               <Image
-                src="/images/xxxx-960x720.jpeg"
-                alt="Nocciole campane"
+                src="/images/olio-di-nocciola.jpg"
+                alt="Olio di nocciola"
                 fill
                 className="object-cover"
               />
