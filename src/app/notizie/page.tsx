@@ -12,7 +12,7 @@ export default function Notizie() {
       <PageHero
         label="Notizie"
         title="Aggiornamenti dal consorzio."
-        backgroundImage="/images/321843775_565221228398510_4770792309745797666_n.jpg"
+        backgroundImage="/images/jackmac34-hazelnuts-1707601_1920.jpg"
       />
       <ArticlesGrid />
     </div>
