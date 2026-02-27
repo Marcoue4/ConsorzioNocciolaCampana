@@ -25,17 +25,17 @@ export const categories: ProductCategory[] = [
 
 export const products: Product[] = [
   {
-    title: 'Nocciole Tonde Gentili IGP',
-    description: 'Nocciole piemontesi IGP dal gusto unico',
-    image: '/images/xxxx-960x720.jpeg',
+    title: 'Nocciole Campane',
+    description: 'Nocciole Campane dal gusto unico',
+    image: '/images/AdobeStock_316441870-1-960x720.jpeg',
     category: 'Nocciole',
     price: '€12.90',
     unit: '/ 500g',
     featured: true,
   },
   {
-    title: 'Noci di Sorrento DOP',
-    description: 'Noci campane DOP, dolci e delicate',
+    title: 'Noci Campane DOP',
+    description: 'Noci Campane DOP, dolci e delicate',
     image: '/images/7B93C52C-8AA1-471F-909A-A054FB2677EF-1-960x720.jpg',
     category: 'Noci',
     price: '€14.50',
