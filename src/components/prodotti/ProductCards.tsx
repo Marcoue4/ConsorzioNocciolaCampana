@@ -1,11 +1,20 @@
 import Image from 'next/image'
-import { products } from '@/data/prodotti'
+import { getProducts } from '@/sanity/queries'
+import { products as staticProducts } from '@/data/prodotti'
 
 /**
  * Legacy alternating-row product layout.
  * Kept for reference — the active page now uses ProductGrid instead.
  */
-export default function ProductCards() {
+export default async function ProductCards() {
+  let products = staticProducts
+  try {
+    const sanityProducts = await getProducts()
+    if (sanityProducts?.length) products = sanityProducts
+  } catch (e) {
+    // Fallback to static data
+  }
+
   return (
     <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 sm:pb-20 md:px-10 md:pb-24">
       <div className="space-y-14 sm:space-y-20">

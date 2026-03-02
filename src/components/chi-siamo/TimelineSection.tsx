@@ -1,6 +1,15 @@
-import { milestones } from '@/data/chi-siamo'
+import { getMilestones } from '@/sanity/queries'
+import { milestones as staticMilestones } from '@/data/chi-siamo'
 
-export default function TimelineSection() {
+export default async function TimelineSection() {
+  let milestones = staticMilestones
+  try {
+    const sanityMilestones = await getMilestones()
+    if (sanityMilestones?.length) milestones = sanityMilestones
+  } catch (e) {
+    // Fallback to static data
+  }
+
   return (
     <section id="storia" className="bg-white scroll-mt-28 py-14 sm:py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10">

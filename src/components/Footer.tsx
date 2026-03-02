@@ -51,10 +51,16 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-hazel-800/50">
-        <div className="mx-auto max-w-7xl px-6 py-6 sm:px-10">
-          <p className="text-center text-xs text-cream-500">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 sm:flex-row sm:px-10">
+          <p className="text-xs text-cream-500">
             © {new Date().getFullYear()} Consorzio Nocciola Campana. Tutti i diritti riservati.
           </p>
+          <Link
+            href="/dashboard"
+            className="text-xs text-cream-600 transition hover:text-cream-300"
+          >
+            Area Produttori
+          </Link>
         </div>
       </div>
     </footer>

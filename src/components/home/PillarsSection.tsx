@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { pillars } from '@/data/home'
+import { getPillars } from '@/sanity/queries'
+import { pillars as staticPillars } from '@/data/home'
 
 function PillarIcon({ name }: { name: string }) {
   const iconClassName = 'h-6 w-6 text-forest-700'
@@ -72,7 +73,15 @@ function PillarIcon({ name }: { name: string }) {
   )
 }
 
-export default function PillarsSection() {
+export default async function PillarsSection() {
+  let pillars = staticPillars
+  try {
+    const sanityPillars = await getPillars()
+    if (sanityPillars?.length) pillars = sanityPillars
+  } catch (e) {
+    // Fallback to static data
+  }
+
   return (
     <section className="bg-cream-100/70 py-20 sm:py-24 md:py-28 lg:py-32">
       <div className="mx-auto max-w-360 px-4 text-center sm:px-6 md:px-10">

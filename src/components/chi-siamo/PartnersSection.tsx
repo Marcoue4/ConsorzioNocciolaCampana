@@ -1,8 +1,17 @@
 import Image from 'next/image'
 import SectionHeader from '@/components/ui/SectionHeader'
-import { partners } from '@/data/chi-siamo'
+import { getPartners } from '@/sanity/queries'
+import { partners as staticPartners } from '@/data/chi-siamo'
 
-export default function PartnersSection() {
+export default async function PartnersSection() {
+  let partners = staticPartners
+  try {
+    const sanityPartners = await getPartners()
+    if (sanityPartners?.length) partners = sanityPartners.map((p: { name: string }) => p.name)
+  } catch (e) {
+    // Fallback to static data
+  }
+
   return (
     <section id="partner" className="bg-white scroll-mt-28">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:gap-16 sm:px-6 sm:py-20 md:px-10 md:py-24 lg:grid-cols-2 lg:items-center">

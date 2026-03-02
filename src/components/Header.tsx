@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useCart } from '@/components/cart/CartContext'
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -14,6 +15,7 @@ const navLinks = [
 
 export default function Header() {
   const [open, setOpen] = useState(false)
+  const { totalItems } = useCart()
 
   return (
     <>
@@ -37,12 +39,35 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+
+            {/* Cart icon */}
+            <Link href="/carrello" className="relative p-1.5 text-hazel-700 transition hover:text-forest-700">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              {totalItems > 0 && (
+                <span className="absolute -right-1.5 -top-1.5 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-[var(--brand-green)] text-[10px] font-bold text-white">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
           </nav>
 
-          {/* Mobile hamburger */}
+          {/* Mobile cart + hamburger */}
+          <div className="flex items-center gap-2 md:hidden">
+            <Link href="/carrello" className="relative flex h-10 w-10 items-center justify-center rounded-lg transition hover:bg-hazel-100" onClick={() => setOpen(false)}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-hazel-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              {totalItems > 0 && (
+                <span className="absolute right-0.5 top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[var(--brand-green)] text-[9px] font-bold text-white">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
           <button
             onClick={() => setOpen(!open)}
-            className="relative z-[80] flex h-10 w-10 items-center justify-center rounded-lg transition hover:bg-hazel-100 md:hidden"
+            className="relative z-[80] flex h-10 w-10 items-center justify-center rounded-lg transition hover:bg-hazel-100"
             aria-label="Menu"
           >
             <div className="flex w-5 flex-col gap-1.5">
@@ -51,6 +76,7 @@ export default function Header() {
               <span className={`block h-0.5 w-full rounded-full bg-hazel-800 transition-all duration-300 ${open ? '-translate-y-2 -rotate-45' : ''}`} />
             </div>
           </button>
+          </div>
         </div>
       </header>
 

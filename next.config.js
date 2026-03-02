@@ -5,10 +5,14 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'www.consorzionocciolacampana.it'
-      }
-    ]
-  }
+        hostname: 'www.consorzionocciolacampana.it',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig

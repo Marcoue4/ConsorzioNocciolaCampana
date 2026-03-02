@@ -1,9 +1,18 @@
 import Link from 'next/link'
 import SectionHeader from '@/components/ui/SectionHeader'
 import ArticleCard from '@/components/ui/ArticleCard'
-import { latestNews } from '@/data/home'
+import { getLatestArticles } from '@/sanity/queries'
+import { latestNews as staticLatestNews } from '@/data/home'
 
-export default function NewsPreview() {
+export default async function NewsPreview() {
+  let latestNews = staticLatestNews
+  try {
+    const sanityNews = await getLatestArticles()
+    if (sanityNews?.length) latestNews = sanityNews
+  } catch (e) {
+    // Fallback to static data
+  }
+
   return (
     <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 md:px-10 md:py-24">
       <div className="mb-8 flex items-end justify-between gap-4 sm:mb-14 sm:gap-6">

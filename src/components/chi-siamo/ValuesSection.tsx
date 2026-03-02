@@ -1,6 +1,15 @@
-import { values } from '@/data/chi-siamo'
+import { getValues } from '@/sanity/queries'
+import { values as staticValues } from '@/data/chi-siamo'
 
-export default function ValuesSection() {
+export default async function ValuesSection() {
+  let values = staticValues
+  try {
+    const sanityValues = await getValues()
+    if (sanityValues?.length) values = sanityValues
+  } catch (e) {
+    // Fallback to static data
+  }
+
   return (
     <section id="valori" className="scroll-mt-28 py-14 sm:py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10">

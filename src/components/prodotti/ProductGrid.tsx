@@ -2,9 +2,25 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { products, categories, type ProductCategory } from '@/data/prodotti'
+import Link from 'next/link'
+import { type ProductCategory } from '@/data/prodotti'
 
-export default function ProductGrid() {
+interface ProductGridProps {
+  products: {
+    title: string
+    slug: string
+    description: string
+    image: string
+    category: ProductCategory
+    price: string
+    unit: string
+    origin?: string
+    featured?: boolean
+  }[]
+  categories: ProductCategory[]
+}
+
+export default function ProductGrid({ products, categories }: ProductGridProps) {
   const [active, setActive] = useState<ProductCategory>('Tutti')
 
   const filtered =
@@ -34,7 +50,12 @@ export default function ProductGrid() {
       {/* ── Product grid ── */}
       <div className="grid gap-x-6 gap-y-11 sm:grid-cols-2 lg:grid-cols-4">
         {filtered.map((product) => (
-          <article key={product.title} className="group">
+          <Link
+            key={product.title}
+            href={`/prodotti/${product.slug}`}
+            className="group block"
+          >
+            <article>
             {/* Image */}
             <div className="relative aspect-square overflow-hidden rounded-2xl bg-cream-100">
               <Image
@@ -71,6 +92,7 @@ export default function ProductGrid() {
               </p>
             </div>
           </article>
+          </Link>
         ))}
       </div>
     </section>

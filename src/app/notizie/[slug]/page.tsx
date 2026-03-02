@@ -1,38 +1,89 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { articles } from '@/data/notizie'
+import { PortableText } from '@portabletext/react'
+import { getArticleBySlug, getArticleSlugs } from '@/sanity/queries'
+import { articles as staticArticles } from '@/data/notizie'
 
 interface ArticlePageProps {
   params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
-  return articles.map((a) => ({ slug: a.slug }))
+  try {
+    const sanity = await getArticleSlugs()
+    if (sanity?.length) return sanity
+  } catch (e) {
+    // Fallback
+  }
+  return staticArticles.map((a) => ({ slug: a.slug }))
 }
 
 export async function generateMetadata({ params }: ArticlePageProps) {
   const { slug } = await params
-  const article = articles.find((a) => a.slug === slug)
-  if (!article) return {}
+  let article: Record<string, unknown> | null = null
+
+  try {
+    article = await getArticleBySlug(slug)
+  } catch (e) {
+    // Fallback
+  }
+  if (!article) {
+    const found = staticArticles.find((a) => a.slug === slug)
+    if (!found) return {}
+    return {
+      title: `${found.title} — Consorzio Nocciola Campana`,
+      description: found.excerpt,
+    }
+  }
   return {
     title: `${article.title} — Consorzio Nocciola Campana`,
     description: article.excerpt,
   }
 }
 
+function formatDate(raw: string): string {
+  if (raw.match(/^\d{4}-\d{2}-\d{2}$/)) {
+    return new Date(raw).toLocaleDateString('it-IT', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    })
+  }
+  return raw
+}
+
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { slug } = await params
-  const article = articles.find((a) => a.slug === slug)
-  if (!article) notFound()
+
+  // Try Sanity first
+  let article: Record<string, unknown> | null = null
+  let isSanity = false
+  try {
+    article = await getArticleBySlug(slug)
+    if (article) isSanity = true
+  } catch (e) {
+    // Fallback
+  }
+
+  // Fallback to static
+  const staticArticle = !article
+    ? staticArticles.find((a) => a.slug === slug) ?? null
+    : null
+
+  if (!article && !staticArticle) notFound()
+
+  const title = (article?.title ?? staticArticle?.title) as string
+  const image = (article?.image ?? staticArticle?.image) as string
+  const date = formatDate((article?.date ?? staticArticle?.date) as string)
 
   return (
     <div className="bg-cream-50">
       {/* Hero banner */}
       <section className="relative h-[40vh] min-h-[280px] sm:h-[50vh]">
         <Image
-          src={article.image}
-          alt={article.title}
+          src={image}
+          alt={title}
           fill
           priority
           className="object-cover"
@@ -40,10 +91,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-hazel-950/80 via-hazel-900/40 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 mx-auto max-w-3xl px-4 pb-8 sm:px-6 sm:pb-12">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cream-300 sm:text-sm">
-            {article.date}
+            {date}
           </p>
           <h1 className="mt-2 font-serif text-2xl font-bold leading-tight text-white sm:text-3xl md:text-4xl">
-            {article.title}
+            {title}
           </h1>
         </div>
       </section>
@@ -51,9 +102,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       {/* Body */}
       <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-16 md:py-20">
         <div className="space-y-5 text-base leading-relaxed text-hazel-700 sm:text-lg">
-          {article.body.map((paragraph, i) => (
-            <p key={i}>{paragraph}</p>
-          ))}
+          {isSanity && article?.body ? (
+            <PortableText value={article.body as any} />
+          ) : (
+            staticArticle?.body.map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
+            ))
+          )}
         </div>
 
         <div className="mt-12 border-t border-cream-200 pt-8">
